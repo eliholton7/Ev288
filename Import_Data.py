@@ -6,4 +6,7 @@ path_data = '/Users/[eliholton]/Ev228_data/'
 file_name = 'KRDU_temp_188708-202508.csv'
 df = pd.read_csv(file_name)
 
-print(df)
+#print(df)
+
+unknown_variable = df['M-A-M'][0:] 
+print(unknown_variable)
