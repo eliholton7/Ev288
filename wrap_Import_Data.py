@@ -3,4 +3,4 @@ import numpy as np
 import matplotlib.pyplot as plt
 import fun_GHCN_data as GHCN
 
-GHCN.import_data('/Users/eliholton/GitHub/Ev228/Practical4_Data/','AYW00090001_temp_195702-202508.csv',2,3)
+GHCN.import_data('/Users/eliholton/GitHub/Ev228/Practical4_Data/','BR038014410_temp_189601-202508.csv',2,3)
