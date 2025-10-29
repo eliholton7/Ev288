@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-def fun_import_data(path_data,file_name,column,row):
+def import_data(path_data,file_name,column,row):
     df = pd.read_csv(path_data+file_name)
     print(df)
     #selected_column = df[column]
