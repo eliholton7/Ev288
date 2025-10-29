@@ -10,3 +10,4 @@ df = pd.read_csv(file_name)
 
 unknown_variable = df['M-A-M'][0:] 
 print(unknown_variable)
+# unknown_variable is a monthly average of temperatures from March-April-May
