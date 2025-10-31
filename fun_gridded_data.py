@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import xarray as xr
 
-def gridded_figure(path_data, file_name, spatial_variable, high_dimensional_data )
+def gridded_figure(path_data, file_name, spatial_variable, high_dimensional_data):
     '''spatial_variable and high_dimensional_data represent the chosen variables, such as xy coordinates and time,
      and should be entered as a string. '''
     ds = xr.open_dataset(path_data+file_name)
