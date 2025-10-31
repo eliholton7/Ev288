@@ -2,14 +2,19 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import xarray as xr
-import fun_des_stats as fds
+import fun_des_stats as halloween
 
 path_data = '/Users/eliholton/Ev228_data/'
 file_name = 'Era5T2M1997-2025.nc'
 
-in_data, in_data2 = fds.CDF_data(path_data,file_name,'t2m','valid_time')
-fds.des_stats(in_data)
-fds.des_stats(in_data2)
+in_data, in_data2 = halloween.CDF_data(path_data,file_name,'t2m','valid_time')
+# stat = np.std(in_data)
+# print(stat)
+# d = {
+#     'stat': stat,
+# }
+halloween.des_stats(in_data)
+halloween.des_stats(in_data2)
 
 #ds = xr.open_dataset(path_data+file_name)
 #print(ds)
