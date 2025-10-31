@@ -11,8 +11,13 @@ def CDF_data(path_data,file_name,spatial_variable,high_dimensional_data):
     dx = ds[high_dimensional_data]
     return da, dx
     
-def des_stats(da,dx):
-    data = (da,dx)
-    descriptives = dict{data.mean, np.std(data), np.var(data), stats.skewness(data), stats.kurtosis(data)}
-    print(descriptives)
+def des_stats(data):
+    descriptives_dict = {
+        'mean_stat': np.mean(data),
+        'std_stat': np.std(data),
+        'var_stat': np.var(data), 
+        'skewness_stat': stats.skew(data), 
+        'kurtosis_stat': stats.kurtosis(data)
+    }
+    print(descriptives_dict)
 
