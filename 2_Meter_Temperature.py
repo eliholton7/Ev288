@@ -7,9 +7,9 @@ import fun_des_stats as fds
 path_data = '/Users/eliholton/Ev228_data/'
 file_name = 'Era5T2M1997-2025.nc'
 
-data, data2 = fds.CDF_data(path_data,file_name,'t2m','valid_time')
-fds.des_stats(data)
-fds.des_stats(data2)
+in_data, in_data2 = fds.CDF_data(path_data,file_name,'t2m','valid_time')
+fds.des_stats(in_data)
+fds.des_stats(in_data2)
 
 #ds = xr.open_dataset(path_data+file_name)
 #print(ds)
