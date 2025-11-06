@@ -3,6 +3,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import xarray as xr
 import fun_gridded_data as fgd
+import cartopy as cy
+import cartopy.feature as cfeature
 import sys 
 
 #path data and outpath data for figure--can probably copy code gridded data function.
