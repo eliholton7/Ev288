@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import xarray as xr
 import scipy.stats as stats
 
+#Function for downloading NetCDF files and returning two dataarrays.
 def CDF_data(path_data,file_name,spatial_variable,high_dimensional_data):
     ds = xr.open_dataset(path_data+file_name)
     #print(ds)
@@ -12,7 +13,3 @@ def CDF_data(path_data,file_name,spatial_variable,high_dimensional_data):
     dx = ds[high_dimensional_data]
     return da, dx
     
-def des_stats(in_data):
-    print('HI')
-    stdev = in_data.std()
-    print(stdev)

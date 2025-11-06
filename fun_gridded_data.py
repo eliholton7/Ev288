@@ -3,6 +3,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import xarray as xr
 
+
+#Function for making a gridded figure and using dimension reduction to average time.
 def gridded_figure(path_data, file_name, spatial_variable, high_dimensional_data):
     '''spatial_variable and high_dimensional_data represent the chosen variables, such as xy coordinates and time,
      and should be entered as a string. '''

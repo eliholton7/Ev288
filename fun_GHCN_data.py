@@ -2,6 +2,8 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
+
+#Function for importing CSV files and selecting a variable to print.
 def import_data(path_data,file_name,column,row):
     df = pd.read_csv(path_data+file_name)
     print(df)

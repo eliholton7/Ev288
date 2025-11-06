@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import xarray as xr
 
-
+#Function for importing era5 data and returning a dataarray.
 def import_era5(file_path='', var=''):
     ''' Import ERA5 gridded data '''
     ds = xr.open_dataset(file_path)
