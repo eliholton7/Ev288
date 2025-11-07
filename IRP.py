@@ -13,9 +13,6 @@ fig_name2 = 'SPD1965-1985.png'
 fig_name3 = 'SPD1985-2005.png'
 fig_name4 = 'SPD2005-2025.png'
 
-#import function to read .nc data. Can copy code from fun_des_stats function to read a cdf file. 
-#fgd.gridded_figure(path_data=file_data, file_name=file_name, spatial_variable='longitude' + 'latitude', high_dimensional_data='Year')
-
 
 def import_era5(file_path='', var=''):
     ''' Import ERA5 gridded data '''
@@ -39,6 +36,7 @@ def map(in_da, out_path='', out_name=''):
     cb.set_label('precipitation (mm)')
     plt.savefig(out_path + out_name, dpi=400)
 
+#Creating 4 dataarrays of 20 years of precipitation to see how the plots change in 20 year intervals.
 da_tp = import_era5(file_path=file_data+file_name, var='tp')
 graph_1_data = np.arange(59,300)
 graph_2_data = np.arange(300,540)
@@ -55,14 +53,35 @@ da_vt_mn2 = graph_2.mean(dim = 'valid_time')
 da_vt_mn3 = graph_3.mean(dim = 'valid_time')
 da_vt_mn4 = graph_4.mean(dim = 'valid_time')
 
+#mapping the 4 different dataarrays.
 map(da_vt_mn1, fig_path, fig_name1)
 map(da_vt_mn2, fig_path, fig_name2)
 map(da_vt_mn3, fig_path, fig_name3)
 map(da_vt_mn4, fig_path, fig_name4)
 
+#descriptive statistics of each 20 year interval
+mean_var = np.mean(graph_1,graph_2,graph_3,graph_4)
+std_var = np.std(graph_1)
+max_var = np.max(graph_1)
+min_var = np.min(graph_1)
 
-#plot the graph, can likely use code from the fun_gridded_data function, 
-# which also reads the cdf file so maybe fun_des_stats is not needed.
+# mean_var = np.mean(graph_2)
+# std_var = np.std(graph_2)
+# max_var = np.max(graph_2)
+# min_var = np.min(graph_2)
+
+# mean_var = np.mean(graph_3)
+# std_var = np.std(graph_3)
+# max_var = np.max(graph_3)
+# min_var = np.min(graph_3)
+
+# mean_var = np.mean(graph_4)
+# std_var = np.std(graph_4)
+# max_var = np.max(graph_4)
+# min_var = np.min(graph_4)
+
+print(mean_var)
+
 
 #fousing on the statistics of the data, or focusing on a trend. End year - start year divided by # of years.
 
