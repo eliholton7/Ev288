@@ -83,5 +83,5 @@ min_var = np.min(graph_1)
 print(mean_var)
 
 
-#fousing on the statistics of the data, or focusing on a trend. End year - start year divided by # of years.
+'''need to learn how to change the title on different graphs. Can't see any clear way to brute force it yet'''
 
