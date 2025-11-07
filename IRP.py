@@ -2,16 +2,16 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import xarray as xr
-import fun_gridded_data as fgd
-import cartopy as cy
-import cartopy.feature as cfeature
 import sys 
 
 #path data and outpath data for figure--can probably copy code gridded data function.
 file_data = '/Users/eliholton/GitHub/Ev228/'
 file_name = 'Southern_Precipitation_Data.nc'
 fig_path = '/Users/eliholton/GitHub/Ev228/'
-fig_name = 'SPD.png'
+fig_name1 = 'SPD1945-1965.png'
+fig_name2 = 'SPD1965-1985.png'
+fig_name3 = 'SPD1985-2005.png'
+fig_name4 = 'SPD2005-2025.png'
 
 #import function to read .nc data. Can copy code from fun_des_stats function to read a cdf file. 
 #fgd.gridded_figure(path_data=file_data, file_name=file_name, spatial_variable='longitude' + 'latitude', high_dimensional_data='Year')
@@ -40,10 +40,26 @@ def map(in_da, out_path='', out_name=''):
     plt.savefig(out_path + out_name, dpi=400)
 
 da_tp = import_era5(file_path=file_data+file_name, var='tp')
-da_tp_timemn = da_tp.mean(dim='valid_time')
+graph_1_data = np.arange(59,300)
+graph_2_data = np.arange(300,540)
+graph_3_data = np.arange(540,780)
+graph_4_data = np.arange(780,1029)
 
-map(da_tp_timemn, fig_path, fig_name)
-#set the variables that im interested in. 
+graph_1 = da_tp.isel(valid_time = graph_1_data)
+graph_2 = da_tp.isel(valid_time = graph_2_data)
+graph_3 = da_tp.isel(valid_time = graph_3_data)
+graph_4 = da_tp.isel(valid_time = graph_4_data)
+
+da_vt_mn1 = graph_1.mean(dim = 'valid_time')
+da_vt_mn2 = graph_2.mean(dim = 'valid_time')
+da_vt_mn3 = graph_3.mean(dim = 'valid_time')
+da_vt_mn4 = graph_4.mean(dim = 'valid_time')
+
+map(da_vt_mn1, fig_path, fig_name1)
+map(da_vt_mn2, fig_path, fig_name2)
+map(da_vt_mn3, fig_path, fig_name3)
+map(da_vt_mn4, fig_path, fig_name4)
+
 
 #plot the graph, can likely use code from the fun_gridded_data function, 
 # which also reads the cdf file so maybe fun_des_stats is not needed.
