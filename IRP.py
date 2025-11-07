@@ -21,7 +21,7 @@ def import_era5(file_path='', var=''):
 
     return da
 
-def map(in_da, out_path='', out_name=''):
+def map(in_da, out_path='', out_name='',title_name=''):
     ''' Plot map from 2D DataArray '''
     fig = plt.figure()
     ax = fig.add_subplot(111)
@@ -31,7 +31,7 @@ def map(in_da, out_path='', out_name=''):
     image = plt.pcolormesh(lons, lats, in_da)
     plt.xlabel('longitude')
     plt.ylabel('latitude')
-    plt.title('ERA5 Average Total Precipitation from 1940 to 2025')
+    plt.title(title_name)
     cb = plt.colorbar(image, shrink=.75, orientation="vertical", pad=.02)
     cb.set_label('precipitation (mm)')
     plt.savefig(out_path + out_name, dpi=400)
@@ -54,10 +54,10 @@ da_vt_mn3 = graph_3.mean(dim = 'valid_time')
 da_vt_mn4 = graph_4.mean(dim = 'valid_time')
 
 #mapping the 4 different dataarrays.
-map(da_vt_mn1, fig_path, fig_name1)
-map(da_vt_mn2, fig_path, fig_name2)
-map(da_vt_mn3, fig_path, fig_name3)
-map(da_vt_mn4, fig_path, fig_name4)
+map(da_vt_mn1, fig_path, fig_name1, 'ERA5 Average Total Precipitation from 1945 to 1965')
+map(da_vt_mn2, fig_path, fig_name2, 'ERA5 Average Total Precipitation from 1965 to 1985')
+map(da_vt_mn3, fig_path, fig_name3, 'ERA5 Average Total Precipitation from 1985 to 2005')
+map(da_vt_mn4, fig_path, fig_name4, 'ERA5 Average Total Precipitation from 2005 to 2025')
 
 #descriptive statistics of each 20 year interval
 mean_var = np.mean(graph_1,graph_2,graph_3,graph_4)
@@ -80,7 +80,7 @@ min_var = np.min(graph_1)
 # max_var = np.max(graph_4)
 # min_var = np.min(graph_4)
 
-print(mean_var)
+#print(mean_var)
 
 
 '''need to learn how to change the title on different graphs. Can't see any clear way to brute force it yet'''
