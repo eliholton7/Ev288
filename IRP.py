@@ -60,28 +60,29 @@ map(da_vt_mn3, fig_path, fig_name3, 'ERA5 Average Total Precipitation from 1985 
 map(da_vt_mn4, fig_path, fig_name4, 'ERA5 Average Total Precipitation from 2005 to 2025')
 
 #descriptive statistics of each 20 year interval
-mean_var = np.mean(graph_1,graph_2,graph_3,graph_4)
-std_var = np.std(graph_1)
-max_var = np.max(graph_1)
-min_var = np.min(graph_1)
+mean_var = graph_1.mean()
+std_var = graph_1.std()
+max_var = graph_1.max()
+min_var = graph_1.min()
 
-# mean_var = np.mean(graph_2)
-# std_var = np.std(graph_2)
-# max_var = np.max(graph_2)
-# min_var = np.min(graph_2)
+mean_var2 = graph_2.mean()
+std_var2 = graph_2.std()
+max_var2 = graph_2.max()
+min_var2 = graph_2.min()
 
-# mean_var = np.mean(graph_3)
-# std_var = np.std(graph_3)
-# max_var = np.max(graph_3)
-# min_var = np.min(graph_3)
+mean_var3 = graph_3.mean()
+std_var3 = graph_3.std()
+max_var3 = graph_3.max()
+min_var3 = graph_3.min()
 
-# mean_var = np.mean(graph_4)
-# std_var = np.std(graph_4)
-# max_var = np.max(graph_4)
-# min_var = np.min(graph_4)
+mean_var4 = graph_4.mean()
+std_var4 = graph_4.std()
+max_var4 = graph_4.max()
+min_var4 = graph_4.min()
 
-#print(mean_var)
+print(mean_var,std_var,max_var,min_var)
+print(mean_var2,std_var2,max_var2,min_var2)
+print(mean_var3,std_var3,max_var3,min_var3)
+print(mean_var4,std_var4,max_var4,min_var4)
 
-
-'''need to learn how to change the title on different graphs. Can't see any clear way to brute force it yet'''
 
