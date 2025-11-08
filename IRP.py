@@ -13,7 +13,6 @@ fig_name2 = 'SPD1965-1985.png'
 fig_name3 = 'SPD1985-2005.png'
 fig_name4 = 'SPD2005-2025.png'
 
-
 def import_era5(file_path='', var=''):
     ''' Import ERA5 gridded data '''
     ds = xr.open_dataset(file_path)
@@ -27,7 +26,7 @@ def map(in_da, out_path='', out_name='',title_name=''):
     ax = fig.add_subplot(111)
     lons = in_da.longitude
     lats = in_da.latitude
-
+    # plt.legend()
     image = plt.pcolormesh(lons, lats, in_da)
     plt.xlabel('longitude')
     plt.ylabel('latitude')
@@ -85,4 +84,5 @@ print(mean_var2,std_var2,max_var2,min_var2)
 print(mean_var3,std_var3,max_var3,min_var3)
 print(mean_var4,std_var4,max_var4,min_var4)
 
-
+'''cool idea: figure out how to put the descriptive stats as the legend on each graph.
+also would be cool to be able to label which des stats go to each graph.'''
