@@ -74,10 +74,12 @@ weights = np.cos(np.deg2rad(da_vt_mn4['latitude']))
 da_wghtd4 = da_vt_mn4.weighted(weights)
 
 #descriptive statistics of each 20 year interval
-mean_var = da_wghtd1.mean()
-std_var = da_wghtd1.std()
-max_var = da_wghtd1.max()
-min_var = da_wghtd1.min()
+des_stats1 = {
+mean_var : da_wghtd1.mean(),
+std_var : da_wghtd1.std(),
+max_var : da_wghtd1.max(),
+min_var : da_wghtd1.min()
+}
 
 mean_var2 = da_wghtd2.mean()
 std_var2 = da_wghtd2.std()
