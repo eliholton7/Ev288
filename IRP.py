@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import xarray as xr
+import matplotlib.patches as mpatches
 import sys 
 
 #path data and outpath data for figure--can probably copy code gridded data function.
@@ -26,6 +27,7 @@ def map(in_da, out_path='', out_name='',title_name=''):
     ax = fig.add_subplot(111)
     lons = in_da.longitude
     lats = in_da.latitude
+    # plt.annotate(des_stats,8,9)
     # plt.legend()
     image = plt.pcolormesh(lons, lats, in_da)
     plt.xlabel('longitude')
@@ -58,26 +60,39 @@ map(da_vt_mn2, fig_path, fig_name2, 'ERA5 Average Total Precipitation from 1965 
 map(da_vt_mn3, fig_path, fig_name3, 'ERA5 Average Total Precipitation from 1985 to 2005')
 map(da_vt_mn4, fig_path, fig_name4, 'ERA5 Average Total Precipitation from 2005 to 2025')
 
+#Weighting the latitude and longitude so the descriptive statistics are not thrown off.
+weights = np.cos(np.deg2rad(da_vt_mn1['latitude']))
+da_wghtd1 = da_vt_mn1.weighted(weights)
+
+weights = np.cos(np.deg2rad(da_vt_mn2['latitude']))
+da_wghtd2 = da_vt_mn2.weighted(weights)
+
+weights = np.cos(np.deg2rad(da_vt_mn3['latitude']))
+da_wghtd3 = da_vt_mn3.weighted(weights)
+
+weights = np.cos(np.deg2rad(da_vt_mn4['latitude']))
+da_wghtd4 = da_vt_mn4.weighted(weights)
+
 #descriptive statistics of each 20 year interval
-mean_var = graph_1.mean()
-std_var = graph_1.std()
-max_var = graph_1.max()
-min_var = graph_1.min()
+mean_var = da_wghtd1.mean()
+std_var = da_wghtd1.std()
+max_var = da_wghtd1.max()
+min_var = da_wghtd1.min()
 
-mean_var2 = graph_2.mean()
-std_var2 = graph_2.std()
-max_var2 = graph_2.max()
-min_var2 = graph_2.min()
+mean_var2 = da_wghtd2.mean()
+std_var2 = da_wghtd2.std()
+max_var2 = da_wghtd2.max()
+min_var2 = da_wghtd2.min()
 
-mean_var3 = graph_3.mean()
-std_var3 = graph_3.std()
-max_var3 = graph_3.max()
-min_var3 = graph_3.min()
+mean_var3 = da_wghtd3.mean()
+std_var3 = da_wghtd3.std()
+max_var3 = da_wghtd3.max()
+min_var3 = da_wghtd3.min()
 
-mean_var4 = graph_4.mean()
-std_var4 = graph_4.std()
-max_var4 = graph_4.max()
-min_var4 = graph_4.min()
+mean_var4 = da_wghtd4.mean()
+std_var4 = da_wghtd4.std()
+max_var4 = da_wghtd4.max()
+min_var4 = da_wghtd4.min()
 
 print(mean_var,std_var,max_var,min_var)
 print(mean_var2,std_var2,max_var2,min_var2)
