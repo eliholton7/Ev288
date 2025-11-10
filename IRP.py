@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import xarray as xr
-import matplotlib.patches as mpatches
 import sys 
 
 #path data and outpath data for figure--can probably copy code gridded data function.
@@ -14,6 +13,7 @@ fig_name2 = 'SPD1965-1985.png'
 fig_name3 = 'SPD1985-2005.png'
 fig_name4 = 'SPD2005-2025.png'
 
+#Functions being used.
 def import_era5(file_path='', var=''):
     ''' Import ERA5 gridded data '''
     ds = xr.open_dataset(file_path)
@@ -21,20 +21,19 @@ def import_era5(file_path='', var=''):
 
     return da
 
-def map(in_da, out_path='', out_name='',title_name=''):
+def map(in_da, out_path='', out_name='',title_name='',des_stats={}):
     ''' Plot map from 2D DataArray '''
     fig = plt.figure()
     ax = fig.add_subplot(111)
     lons = in_da.longitude
     lats = in_da.latitude
-    # plt.annotate(des_stats,8,9)
-    # plt.legend()
     image = plt.pcolormesh(lons, lats, in_da)
-    plt.xlabel('longitude')
-    plt.ylabel('latitude')
-    plt.title(title_name)
+    plt.xlabel('Longitude')
+    plt.ylabel('Latitude')
+    plt.title(title_name,fontsize=15)
     cb = plt.colorbar(image, shrink=.75, orientation="vertical", pad=.02)
-    cb.set_label('precipitation (mm)')
+    cb.set_label('Precipitation (mm)')
+    plt.annotate(des_stats,(-93.5,31.65),zorder=1000,fontsize=4)
     plt.savefig(out_path + out_name, dpi=400)
 
 #Creating 4 dataarrays of 20 years of precipitation to see how the plots change in 20 year intervals.
@@ -54,12 +53,6 @@ da_vt_mn2 = graph_2.mean(dim = 'valid_time')
 da_vt_mn3 = graph_3.mean(dim = 'valid_time')
 da_vt_mn4 = graph_4.mean(dim = 'valid_time')
 
-#mapping the 4 different dataarrays.
-map(da_vt_mn1, fig_path, fig_name1, 'ERA5 Average Total Precipitation from 1945 to 1965')
-map(da_vt_mn2, fig_path, fig_name2, 'ERA5 Average Total Precipitation from 1965 to 1985')
-map(da_vt_mn3, fig_path, fig_name3, 'ERA5 Average Total Precipitation from 1985 to 2005')
-map(da_vt_mn4, fig_path, fig_name4, 'ERA5 Average Total Precipitation from 2005 to 2025')
-
 #Weighting the latitude and longitude so the descriptive statistics are not thrown off.
 weights = np.cos(np.deg2rad(da_vt_mn1['latitude']))
 da_wghtd1 = da_vt_mn1.weighted(weights)
@@ -75,31 +68,41 @@ da_wghtd4 = da_vt_mn4.weighted(weights)
 
 #descriptive statistics of each 20 year interval
 des_stats1 = {
-mean_var : da_wghtd1.mean(),
-std_var : da_wghtd1.std(),
-max_var : da_wghtd1.max(),
-min_var : da_wghtd1.min()
+'mean_var' : da_wghtd1.mean(),
+'std_var' : da_wghtd1.std(),
+'max_var' : graph_1.max(),
+'min_var' : graph_1.min()
 }
 
-mean_var2 = da_wghtd2.mean()
-std_var2 = da_wghtd2.std()
-max_var2 = da_wghtd2.max()
-min_var2 = da_wghtd2.min()
+des_stats2 = {
+'mean_var2' : da_wghtd2.mean(),
+'std_var2' : da_wghtd2.std(),
+'max_var2' : graph_2.max(),
+'min_var2' : graph_2.min(),
+}
 
-mean_var3 = da_wghtd3.mean()
-std_var3 = da_wghtd3.std()
-max_var3 = da_wghtd3.max()
-min_var3 = da_wghtd3.min()
+des_stats3 = {
+'mean_var3' : da_wghtd3.mean(),
+'std_var3' : da_wghtd3.std(),
+'max_var3' : graph_3.max(),
+'min_var3' : graph_3.min()
+}
 
-mean_var4 = da_wghtd4.mean()
-std_var4 = da_wghtd4.std()
-max_var4 = da_wghtd4.max()
-min_var4 = da_wghtd4.min()
+des_stats4 = {
+'mean_var4' : da_wghtd4.mean(),
+'std_var4' : da_wghtd4.std(),
+'max_var4' : graph_4.max(),
+'min_var4' : graph_4.min()
+}
 
-print(mean_var,std_var,max_var,min_var)
-print(mean_var2,std_var2,max_var2,min_var2)
-print(mean_var3,std_var3,max_var3,min_var3)
-print(mean_var4,std_var4,max_var4,min_var4)
+print(des_stats1)
+print(des_stats2)
+print(des_stats3)
+print(des_stats4)
 
-'''cool idea: figure out how to put the descriptive stats as the legend on each graph.
-also would be cool to be able to label which des stats go to each graph.'''
+#mapping the 4 different dataarrays.
+map(da_vt_mn1, fig_path, fig_name1, 'ERA5 Average Total Precipitation from 1945 to 1965',des_stats=des_stats1)
+map(da_vt_mn2, fig_path, fig_name2, 'ERA5 Average Total Precipitation from 1965 to 1985',des_stats=des_stats2)
+map(da_vt_mn3, fig_path, fig_name3, 'ERA5 Average Total Precipitation from 1985 to 2005',des_stats=des_stats3)
+map(da_vt_mn4, fig_path, fig_name4, 'ERA5 Average Total Precipitation from 2005 to 2025',des_stats=des_stats4)
+
