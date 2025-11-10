@@ -33,7 +33,7 @@ def map(in_da, out_path='', out_name='',title_name='',des_stats={}):
     plt.title(title_name,fontsize=15)
     cb = plt.colorbar(image, shrink=.75, orientation="vertical", pad=.02)
     cb.set_label('Precipitation (mm)')
-    plt.annotate(des_stats,(-93.5,31.65),zorder=1000,fontsize=4)
+    plt.annotate(des_stats,(-93.8,24.5),zorder=1000,fontsize=4.7,color='white')
     plt.savefig(out_path + out_name, dpi=400)
 
 #Creating 4 dataarrays of 20 years of precipitation to see how the plots change in 20 year intervals.
@@ -68,31 +68,31 @@ da_wghtd4 = da_vt_mn4.weighted(weights)
 
 #descriptive statistics of each 20 year interval
 des_stats1 = {
-'mean_var' : da_wghtd1.mean(),
-'std_var' : da_wghtd1.std(),
-'max_var' : graph_1.max(),
-'min_var' : graph_1.min()
+'Mean_1' : da_wghtd1.mean().data,
+'STD_1' : da_wghtd1.std().data,
+'Max_1' : graph_1.max().data,
+'Min_1' : graph_1.min().data
 }
 
 des_stats2 = {
-'mean_var2' : da_wghtd2.mean(),
-'std_var2' : da_wghtd2.std(),
-'max_var2' : graph_2.max(),
-'min_var2' : graph_2.min(),
+'Mean_2' : da_wghtd2.mean().data,
+'STD_2' : da_wghtd2.std().data,
+'Max_2' : graph_2.max().data,
+'Min_2' : graph_2.min().data
 }
 
 des_stats3 = {
-'mean_var3' : da_wghtd3.mean(),
-'std_var3' : da_wghtd3.std(),
-'max_var3' : graph_3.max(),
-'min_var3' : graph_3.min()
+'Mean_3' : da_wghtd3.mean().data,
+'STD_3' : da_wghtd3.std().data,
+'Max_3' : graph_3.max().data,
+'Min_3' : graph_3.min().data
 }
 
 des_stats4 = {
-'mean_var4' : da_wghtd4.mean(),
-'std_var4' : da_wghtd4.std(),
-'max_var4' : graph_4.max(),
-'min_var4' : graph_4.min()
+'Mean_4' : da_wghtd4.mean().data,
+'STD_4' : da_wghtd4.std().data,
+'Max_4' : graph_4.max().data,
+'Min_4' : graph_4.min().data
 }
 
 print(des_stats1)
