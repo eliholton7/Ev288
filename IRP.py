@@ -33,7 +33,7 @@ def map(in_da, out_path='', out_name='',title_name='',des_stats={}):
     plt.title(title_name,fontsize=15)
     cb = plt.colorbar(image, shrink=.75, orientation="vertical", pad=.02)
     cb.set_label('Precipitation (mm)')
-    plt.annotate(des_stats,(-93.8,24.5),zorder=1000,fontsize=4.7,color='white')
+    plt.annotate(des_stats,(-93.8,24),zorder=1000,fontsize=4.7,color='white')
     plt.savefig(out_path + out_name, dpi=400)
 
 #Creating 4 dataarrays of 20 years of precipitation to see how the plots change in 20 year intervals.

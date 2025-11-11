@@ -11,6 +11,7 @@ def import_era5(file_path='', var=''):
 
     return da
 
+#function for mapping gridded data.
 def map(in_da, out_path='', out_name=''):
     ''' Plot map from 2D DataArray '''
     fig = plt.figure()

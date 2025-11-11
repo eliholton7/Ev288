@@ -19,6 +19,8 @@ def import_ghcn(file_path='', var=''):
     df_yr = df['YEAR']
 
     return df_data, df_yr
+
+#function for plotting timeseries data.
 def timeseries(in_df, in_x=None, out_path='', out_name=''):
     ''' Plot timeseries from 1D dataframe '''
     fig = plt.figure()
@@ -31,12 +33,14 @@ def timeseries(in_df, in_x=None, out_path='', out_name=''):
     plt.title('Macquarie Island, Australia - Annual Temperature from 1948-2025')
     plt.savefig(out_path + out_name, dpi=400)
 
-
+#Filtering out anomalies in data.
 df_data, df_yr = import_ghcn(file_path=file_data+file_name, var=var)
 filter_data = df_data[df_data != 999.9]
 filter_year = df_yr[df_data != 999.9]
 timeseries(filter_data, in_x=filter_year, out_path=fig_path, out_name=fig_name)
 
+
+#Descriptive Statistics
 mean_var = np.mean(filter_data)
 std_var = np.std(filter_data)
 max_var = np.max(filter_data)
