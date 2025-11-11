@@ -1,6 +1,20 @@
 # Ev288
 Individual
 
+My Independent Research Project is the summation of all of the scripts written in this repository. My project focuses on the total precipitation amount in the southern United States from 1945 to 2025. In order to examine the Era-5 Data I used, I wrote the IRP.py script, which uses two primary functions: One to import the data and return the data-array being worked with (in this case "tp" for total precipitation), and the other to map the data into a figure. Since the data spans 80 years and is gridded data, I decided to split the data into 4 20-year intervals and graph each interval, as represented by the SPD(years).png files in the repository. The rest of the code involves weighting the latitute and longitude correctly so that the descriptive statistics that I decided to annotate onto each graph were correct, and the dictionaries actually containing the descriptive statistics code. Each other file in this repository either led me to work with the functions used in the IRP script, or helped me practice writing code for both timeseries and gridded data and their figures. 
 
-To run my "import data" code, first you have to import my fun_GHCN_data module, and for ease of use, import it as a name to your liking - I chose GHCN. Next, you're going to call the function by typing the name you've given it, (or the module name if you haven't imported it as a specific name) followed by a period and import_data, which is the function name. From there, you have to set it's arguments in parenthesis, which are path_data, file_data, row, column, in that order. Typing integers into the row and column sections will determine the data point you have chosen, and path data and file data are the locations and name of the file that you are analyzing. 
+
+Code Index:
+2_Meter_Temperature.py: This script was written for an in class excercise, but failed to work for some reason, potentially because of an invisible character of some sort? Several data structures simply wouldn't work and there was no obvious reason as to why. 
+fun_CDF_dataarrays.py: This script contains a function to import NetCDF data and return two data arrays, gerenally meant for coordinates and time.
+fun_GHCN_data.py: This function imports GHCN data and depoending on the variable selected, prints out a data-point from the column and row desired. 
+fun_gridded_data.py: This function creates a very simple gridded data figure, and was originally used in my Independant Research Project until I decided I needed a more complex function.
+hello_world.py: Test to see that the GitHub was working.
+IRP.py: Independent Research Project, see above.
+practical-6-part2.py: This script was written for the practical 6 assignment, and contains the "map" and "import_era5" functions, which imports era-5 data and makes a slightly more complex gridded figure
+practical-6.py: This script was for the first part of practical 6, and contains two functions to import GHCN data and make a timeseries function, as well as some extra code to take out anomalies in the data and run descriptive statistics.
+trendline_practice.py: This script was written to code a trendline onto a timeseries graph.
+wrap_import_data.py: This was created just to test the fun_GHCN_data script containing the import_data function. 
+Everything else in this repository is either data or graphs for the various scripts. The most important graphs/images are the 5 SPD.png graphs pertaining to my independant reserach project, as described above. 
+
 No generative AI was used on this assignment.
