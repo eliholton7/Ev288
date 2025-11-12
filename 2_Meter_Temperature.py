@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import xarray as xr
-import fun_des_stats as halloween
+import fun_CDF_dataarrays as halloween
 
 path_data = '/Users/eliholton/Ev228_data/'
 file_name = 'Era5T2M1997-2025.nc'
